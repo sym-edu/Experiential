@@ -1,125 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Chatbot - decoy</title>
+</head>
 <body>
-        <nav>
-            <div class="logo">
-                <img src="logo.png" alt="Logo" />
-                <span>Hello,Learner!</span>
+    <div class="wrapper">
+        <div class="title">Simple Chatbot</div>
+        <div class="box">
+            <div class="item">
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="msg">
+                    <p>Hello everyone, How are you?</p>
+                </div>
             </div>
-            
-            <ul>
-                <li><a href="#">My Dashboard</a></li>
-                <li><a href="#">Profile</a></li>
-                <button>
-                    <span>Need Help</span>
-                    <img src="help.png" alt="Help" />
-                </button>
-            </ul>
-        </nav>
-
-        <div class="container">
-            <div class="sidebar">
-                <span>
-                    Curriculum
-                </span>
-              <button>
-                <div class="button-text">
-                  Button 1
+            <br clear="both">
+            <div class="item right">
+                <div class="msg">
+                    <p>Nice</p>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style ="  width: 60%; background-color: rgb(0, 0, 0);"></div>
-                </div>
-              </button>
-              <button>
-                <div class="button-text">
-                  Button 2
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-              </button>
-              <button>
-                <div class="button-text">
-                  Button 3
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-              </button>
-              <button>
-                <div class="button-text">
-                  Button 4
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-              </button>
-              <button>
-                <div class="button-text">
-                  Button 5
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-              </button>
-              <button>
-                <div class="button-text">
-                  Button 6
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-              </button>
             </div>
-            <div class="content">
-                <video id="my-video" class="custom-video" src="path/to/video.mp4"></video>
-                <div class="custom-controls">
-                  <button id="play-pause-btn" class="control-btn play-btn"></button>
-                  <div class="progress-bar-vid">
-                    <div class="progress"></div>
-                  </div>
-                  <div class="time">
-                    <span id="current-time"></span> / <span id="duration"></span>
-                  </div>
-                </div>
-              </div>
-          </div>
-              
-
-  </body>
-
-  <script>
-    const video = document.getElementById("my-video");
-const playBtn = document.getElementById("play-pause-btn");
-const progress = document.querySelector(".progress");
-const currentTime = document.getElementById("current-time");
-const duration = document.getElementById("duration");
-
-playBtn.addEventListener("click", () => {
-  if (video.paused) {
-    video.play();
-    playBtn.classList.add("playing");
-  } else {
-    video.pause();
-    playBtn.classList.remove("playing");
-  }
-});
-
-video.addEventListener("timeupdate", () => {
-  const percent = (video.currentTime / video.duration) * 100;
-  progress.style.width = percent + "%";
-  currentTime.textContent = formatTime(video.currentTime);
-  duration.textContent = formatTime(video.duration);
-});
-
-function formatTime(time) {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
-  </script>
+        </div>
+        
+        <div class="typing-area">
+            <div class="input-field">
+                <input type="text" placeholder="Type your message" required>
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-
-
