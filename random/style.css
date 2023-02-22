@@ -1,0 +1,268 @@
+body {
+  width: 100%; /* set the width of the body to 100% of the screen width */
+  margin-right: auto; /* remove any default margin on the body */
+}
+
+
+.container {
+  display: flex;
+  margin-left: 30px;
+  width: 95%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 20%;
+  padding: 20px;
+  height: 100%;
+  /* border: 2px solid rgb(0, 0, 0); */
+  /* border-right: #000000; */
+}
+
+.content {
+  border-left: 2px solid rgb(0, 0, 0); 
+  width: 75%; /* set the width of the main content area */
+  padding: 20px; /* add padding to the content area */
+}
+.content:border-left{
+  height: 120%;
+}
+.sidebar-btn {
+  margin-bottom: 20px;
+}
+
+.sidebar span {
+  align-self: center;
+  font-size: 220%;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-right: 15%;
+}
+
+button {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  height: 90px;
+  padding: 0 20px;
+  font-size: 170%;
+  font-weight: bold;
+  text-align: left;
+  color: black;
+  background-color: #ebd461;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #ebd4618c;
+}
+
+
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  margin-top: 10px;
+}
+.progress-fill {
+
+  height: 100%;
+  
+  border-radius: 10px;
+  transition: width 0.3s ease; /* add transition to animate progress bar */
+}
+
+nav {
+    /* margin-right: 220px; */
+    margin-left: 0px;
+    width: 95%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    background-color: transparent;
+    /* padding: 20px; */
+    /* margin: 10% 10% 0% 10%;   */
+    margin: 30px;
+    margin-bottom: 0px;
+    /* height: 0%; */
+    border-radius: 10px 10px 10px 10px;
+    border: 2px solid rgba(0, 0, 0, 0.357);
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    width: auto;
+    margin-top: 25px;
+    /* padding: 0; */
+  }
+  
+  nav li {
+    /* margin-right: 0; */
+    /* align-items: top; */
+    align-self: right;
+    margin-top: 25px;
+}
+
+nav li a {
+    /* margin-top: 30px; */
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 230%;
+    color: black;
+    /* padding-bottom: 5px; */
+    margin-right: 100px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+  }
+
+  nav li a:hover {
+    color: #ebd461;
+    border-bottom: 2px solid black;
+  }
+
+
+  nav  button {
+    background-color: #ebd461;
+    display: flex;
+    flex-direction: row;
+    border: none;
+    border-radius: 10px;
+    width: 290px;
+    height: 100px;
+    margin-left: 250px;
+    margin-right: 30px;
+    align-items: center;
+    /* padding-bottom: auto; */
+  }
+  
+  nav  button img {
+    height: 60px;
+    width: 60px;
+    align-self: right;
+  }
+  
+  nav  button span {
+    font-weight: bold;
+    margin-left: 20px;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  nav  button:hover {
+    background-color: #ebd461d5;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 30px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .button a {
+    background-color: #FCDE6C;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 25% ;
+    width: 25%;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .logo span {
+    color: rgb(0, 0, 0);
+    /* font-weight: bold; */
+    font-size: 220%;
+    /* margin-top: 0%; */
+  }
+  
+
+  .custom-video {
+    width: 100%;
+  }
+  
+  .custom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: black;
+    padding: 10px;
+  }
+  
+  .control-btn {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(162, 26, 26);
+    border: none;
+    margin-top: 20px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .play-btn:before {
+    content: "";
+    display: inline-block;
+    border-style: solid;
+    border-width: 0 10px 0 0;
+    border-color: transparent;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
+  .play-btn.playing:before {
+    border-width: 0 0 0 10px;
+  }
+  
+  .progress-bar-vid {
+    flex: 1;
+    height: 5px;
+    background-color: white;
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: red;
+    width: 0%;
+  }
+  
+  .time {
+    color: white;
+    font-size: 12px;
+  }
+  
