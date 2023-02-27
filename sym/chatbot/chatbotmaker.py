@@ -28,31 +28,35 @@ def gs(user_input):
     search_url = "https://www.google.com/search?q=" + user_input
     headers = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299"}
     response = requests.get(search_url, headers=headers)
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.text, "html.parser ")
     try:
         snippet = soup.find_all('div', class_='BNeawe s3v9rd AP7Wnd')[0].get_text()
         return snippet
     except:
         # if no snippet is found, tell the user the chatbot doesn't know the answer
-        print("I'm sorry, I don't know the answer to that. Can you try asking another question?")
+        print("I'm sorry, I don't know the answer to that. Can you try asking another question? ")
 
 
 
-# db_name = input("enter the database this chatbot is being stored in")
-db_name = 'finance'
+db_name = input("enter the database this chatbot is being stored in ")
+# db_name = 'finance'
 conn = sqlite3.connect('{}.db'.format(db_name))
 c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS user_data (prompt text, response text)''')
 conn.commit()
 
-# db = {}
+db = {}
 
-# while True:
-#     q = input('Enter the question')
-#     a = input('what is the preffered answer?')
-#     co = int(input('enter 1 to add another question or move to testing'))
-#     if co != 1:
-#         break
+while True:
+    co = int(input('enter 1 to add another question or move to testing '))
+    if co != 1:
+        break
+    q = input('Enter the question ')
+    a = input('what is the preffered answer? ')
+    db[q]=a
+
+"""
+    
 db = {"What is a budget?": "A budget is a financial plan that outlines your income and expenses over a certain period of time, usually a month or a year.",
     "Why is it important to have a budget?": "A budget helps you manage your money and make sure you're not spending more than you're earning. It can also help you save money and achieve your financial goals.",
     'How can you create a budget?': 'To create a budget, you need to track your income and expenses, prioritize your spending, and set financial goals. There are many online tools and apps that can help you create a budget.',
@@ -86,21 +90,21 @@ db = {"What is a budget?": "A budget is a financial plan that outlines your inco
 'What is a mortgage?': 'A mortgage is a loan used to purchase a home or other property. The borrower pays back the loan plus interest over a set period of time, typically 15 or 30 years.',
 'What is a down payment?': 'A down payment is the amount of money you pay upfront when purchasing a home or other property. The size of your down payment can affect the interest rate and other terms of your mortgage.'}
 
-
+"""
 # questions,answers = list(db.keys()),list(db.values())
 
 for questions, answers in db.items():
     c.execute("INSERT INTO user_data VALUES (?, ?)", (questions, answers))
     conn.commit()
 
-c.execute("SELECT prompt FROM user_data")
+c.execute("SELECT prompt FROM user_data ")
 questions = [row[0] for row in c.fetchall()]
 conn.commit()
 
 vectorizer = TfidfVectorizer()
 preprocessed_questions = [preprocess(question) for question in questions]
 vectorized_questions = vectorizer.fit_transform(preprocessed_questions)
-# vectorized_questions = vectorized_questions[::-1]
+
 
 def chatbot(su = False):
     user_input = input('enter user input')
@@ -135,7 +139,7 @@ def chatbot(su = False):
                     print('updated')
                 else:
                     print(response)
-                    feedback = int(input("Did this answer your question?(1/0)"))
+                    feedback = int(input("Did this answer your question?(1/0) "))
                     if feedback!=1:
                         response = gs(user_input)
                         question = user_input
