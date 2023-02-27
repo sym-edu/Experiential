@@ -100,7 +100,7 @@ conn.commit()
 vectorizer = TfidfVectorizer()
 preprocessed_questions = [preprocess(question) for question in questions]
 vectorized_questions = vectorizer.fit_transform(preprocessed_questions)
-
+# vectorized_questions = vectorized_questions[::-1]
 
 def chatbot(su = False):
     user_input = input('enter user input')
