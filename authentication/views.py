@@ -4,7 +4,7 @@ from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Course
-from .serializers import CourseSerializer, UserSerializer, UserLoginSerializer
+# from .serializers import CourseSerializer, UserSerializer, UserLoginSerializer
 
 
 class RegisterView(generics.CreateAPIView):
@@ -34,17 +34,17 @@ def logout(request):
     return Response({'detail': 'Logged out successfully.'})
 
 
-@login_required
-@api_view(['POST'])
-def addCourse(request):
-    username = request.user.username
-    course_name = request.data.get('course_name')
-    youtube_link = request.data.get('youtube_link')
+# @login_required
+# @api_view(['POST'])
+# def addCourse(request):
+#     username = request.user.username
+#     course_name = request.data.get('course_name')
+#     youtube_link = request.data.get('youtube_link')
 
-    if not all([course_name, youtube_link]):
-        return Response({'error': 'Incomplete data.'}, status=status.HTTP_400_BAD_REQUEST)
+#     if not all([course_name, youtube_link]):
+#         return Response({'error': 'Incomplete data.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    course = Course.objects.create(username=username, course_name=course_name, youtube_link=youtube_link)
-    serializer = CourseSerializer(course)
+#     course = Course.objects.create(username=username, course_name=course_name, youtube_link=youtube_link)
+#     serializer = CourseSerializer(course)
 
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.data, status=status.HTTP_201_CREATED)
