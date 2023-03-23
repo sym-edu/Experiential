@@ -1,0 +1,39 @@
+for adding course :
+
+{
+  "course_name": "Test Course",
+  "course_code": "TEST123",
+  "course_description": "This is a test course.",
+  "duration": "2 weeks",
+  "cost": "$100",
+  "ages": "18+",
+  "video_lesson": "https://example.com/video",
+  "presentation": "https://example.com/presentation",
+  "quiz_questions": [
+    {
+      "question_text": "What is 1+1?",
+      "options": [
+        {
+          "answer_text": "1",
+          "is_correct": false
+        },
+        {
+          "answer_text": "2",
+          "is_correct": true
+        },
+        {
+          "answer_text": "3",
+          "is_correct": false
+        },
+        {
+          "answer_text": "4",
+          "is_correct": false
+        }
+      ]
+    }
+  ],
+  "written_assessment": "https://example.com/written",
+  "oral_assessment": "https://example.com/oral"
+}
+
+
