@@ -28,22 +28,22 @@ def login_view(request):
     else:
         return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_protect
-@api_view(['POST'])
-def login_view(request):
-    uname = request.data['username']
-    pas = request.data['password']
-    user = authenticate(request=None, username=uname, password=pas)
-    if user is not None:
-        login(request, user)
-        session = SessionStore()
-        session.create()
-        session['username'] = uname
-        session_id = session.session_key
-        session.save()
-        return Response({"detail": "Logged in successfully.", "session_id": session_id})
-    else:
-        return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+# @csrf_protect
+# @api_view(['POST'])
+# def login_view(request):
+#     uname = request.data['username']
+#     pas = request.data['password']
+#     user = authenticate(request=None, username=uname, password=pas)
+#     if user is not None:
+#         login(request, user)
+#         session = SessionStore()
+#         session.create()
+#         session['username'] = uname
+#         session_id = session.session_key
+#         session.save()
+#         return Response({"detail": "Logged in successfully.", "session_id": session_id})
+#     else:
+#         return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
 # Register View
 class RegisterView(generics.CreateAPIView):
