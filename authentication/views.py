@@ -37,7 +37,7 @@ def logout_view(request):
 
 # Add Course View
 @csrf_exempt
-# @login_required
+@login_required
 @api_view(['POST'])
 def add_course(request):
     serializer = CourseSerializer(data=request.data)
