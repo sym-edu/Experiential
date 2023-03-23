@@ -9,13 +9,8 @@ from rest_framework.response import Response
 from .models import Course
 from .serializers import UserSerializer,CourseSerializer
 from django.http import JsonResponse
+from django.contrib.sessions.backends.db import SessionStore
 
-# Register View
-class RegisterView(generics.CreateAPIView):
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = UserSerializer
-
-# Login View
 @csrf_protect
 @api_view(['POST'])
 def login_view(request):
@@ -24,9 +19,49 @@ def login_view(request):
     user = authenticate(request=None, username=uname, password=pas)
     if user is not None:
         login(request, user)
-        return Response({"detail": "Logged in successfully."})
+        session = SessionStore()
+        session.create()
+        session['username'] = uname
+        session_id = session.session_key
+        session.save()
+        return Response({"detail": "Logged in successfully.", "session_id": session_id})
     else:
         return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+@csrf_protect
+@api_view(['POST'])
+def login_view(request):
+    uname = request.data['username']
+    pas = request.data['password']
+    user = authenticate(request=None, username=uname, password=pas)
+    if user is not None:
+        login(request, user)
+        session = SessionStore()
+        session.create()
+        session['username'] = uname
+        session_id = session.session_key
+        session.save()
+        return Response({"detail": "Logged in successfully.", "session_id": session_id})
+    else:
+        return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+# Register View
+class RegisterView(generics.CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = UserSerializer
+
+# Login View
+# @csrf_protect
+# @api_view(['POST'])
+# def login_view(request):
+#     uname = request.data['username']
+#     pas = request.data['password']
+#     user = authenticate(request=None, username=uname, password=pas)
+#     if user is not None:
+#         login(request, user)
+#         return Response({"detail": "Logged in successfully."})
+#     else:
+#         return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
 # Logout View
 @api_view(['POST'])
@@ -48,7 +83,19 @@ def add_course(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
+
+
+@login_required
+def get_user_details(request):
+    user = request.user
+    data = {
+        'username': user.username,
+        'courses': [course.name for course in Course.objects.all()]
+    }
+    return JsonResponse(data)
+
 # Get All Courses View
+@login_required
 @api_view(['GET'])
 def get_courses(request):
     courses = Course.objects.all()
