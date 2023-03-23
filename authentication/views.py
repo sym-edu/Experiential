@@ -55,3 +55,8 @@ def get_courses(request):
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data, status=200)
 
+@api_view(['GET'])
+def u_name(request):
+    username = request.user.username if request.user.is_authenticated else 'Guest'
+    print(username)
+    return Response(username)

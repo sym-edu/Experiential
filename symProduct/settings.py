@@ -24,8 +24,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+
 # CORS_ORIGIN_WHITELIST = [
 #     'http://localhost:3000',
 # ]
@@ -38,8 +37,9 @@ SECRET_KEY = "django-insecure-azz-h*q$$1alyq1p=6ny91-7!99a1sx0l56(&*t(++-_&j$kd%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['43.205.144.122','127.0.0.1']
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['43.205.144.122','127.0.0.1','http://192.168.1.6:3000/','192.168.1.6']
 
 
 # Application definition
