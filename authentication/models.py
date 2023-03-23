@@ -25,8 +25,6 @@ class QuizQuestion(models.Model):
     def __str__(self):
         return self.question_text
 
-
-
 class QuizOption(models.Model):
     question = models.ForeignKey(QuizQuestion, related_name='options', on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=255)

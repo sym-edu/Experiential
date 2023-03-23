@@ -40,7 +40,9 @@ def logout_view(request):
 @login_required
 @api_view(['POST'])
 def add_course(request):
+    print(request.data)
     serializer = CourseSerializer(data=request.data)
+    print(serializer.is_valid())
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
@@ -53,37 +55,3 @@ def get_courses(request):
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data, status=200)
 
-# @api_view(['POST'])
-# def add_course_details(request):
-    try:
-        course = Course.objects.get(course_code=request.data.get('code'))
-    except Course.DoesNotExist:
-        return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
-
-    video_link = request.data.get('video_link')
-    presentation_link = request.data.get('presentation_link')
-    quiz_questions = request.data.get('quiz_questions')
-    written_assessment = request.data.get('written_assessment')
-    oral_assessment = request.data.get('oral_assessment')
-
-    if not any([video_link, presentation_link, quiz_questions, written_assessment, oral_assessment]):
-        return Response({'error': 'No course details provided.'}, status=status.HTTP_400_BAD_REQUEST)
-
-    course.video_link = video_link
-    course.presentation_link = presentation_link
-    course.quiz_questions = quiz_questions
-    course.written_assessment = written_assessment
-    course.oral_assessment = oral_assessment
-
-    course.save()
-    serializer = CourseSerializer(course)
-
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-
-# @api_view(['GET'])
-# def course_list(request):
-#     courses = Course.objects.all()
-#     serializer = CourseSerializer(courses, many=True)
-#     return Response(serializer.data)

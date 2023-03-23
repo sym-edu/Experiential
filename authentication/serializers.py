@@ -8,14 +8,12 @@ class QuizOptionSerializer(serializers.ModelSerializer):
         model = QuizOption
         fields = ('id', 'answer_text', 'is_correct')
 
-
 class QuizQuestionSerializer(serializers.ModelSerializer):
     options = QuizOptionSerializer(many=True)
 
     class Meta:
         model = QuizQuestion
         fields = ('id', 'question_text', 'options')
-
 
 class CourseSerializer(serializers.ModelSerializer):
     quiz_questions = QuizQuestionSerializer(many=True)
