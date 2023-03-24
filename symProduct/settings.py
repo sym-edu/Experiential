@@ -35,10 +35,10 @@ REST_FRAMEWORK = {
 SECRET_KEY = "django-insecure-azz-h*q$$1alyq1p=6ny91-7!99a1sx0l56(&*t(++-_&j$kd%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-ALLOWED_HOSTS = ['43.205.144.122','127.0.0.1']
+ALLOWED_HOSTS = ['localhost']
 
 SESSION_COOKIE_NAME = 'myapp_sessionid'
 SESSION_COOKIE_DOMAIN = '192.168.1.6:3000'
