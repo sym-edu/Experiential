@@ -10,7 +10,8 @@ from .models import Course
 from .serializers import UserSerializer,CourseSerializer
 from django.http import JsonResponse
 from django.contrib.sessions.backends.db import SessionStore
-from age8_10 import chatbot
+from .age8_10 import chatbot
+
 @csrf_protect
 @api_view(['POST'])
 def login_view(request):
