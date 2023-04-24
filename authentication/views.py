@@ -10,7 +10,7 @@ from .models import Course
 from .serializers import UserSerializer,CourseSerializer
 from django.http import JsonResponse
 from django.contrib.sessions.backends.db import SessionStore
-
+from age8_10 import chatbot
 @csrf_protect
 @api_view(['POST'])
 def login_view(request):
@@ -83,6 +83,12 @@ def add_course(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
+
+@api_view(['POST'])
+@login_required
+def chat(request):
+    query = request.data['query']
+    return Response(chatbot(query))
 
 
 @login_required
