@@ -95,5 +95,5 @@ def chatbot(user_input):
                 return snippet
             except:
                 # if no snippet is found, tell the user the chatbot doesn't know the answer
-                print("I'm sorry, I don't know the answer to that. Can you try asking another question?")
+                return "I'm sorry, I don't know the answer to that. Can you try asking another question?"
 # chatbot()
